@@ -5,6 +5,10 @@
 #include <float.h>
 #include <stdio.h>
 
+//! \file unit-tests.c 
+/*! Unit-tests for equation solver */
+
+//! A static variable which represents the number of completed tests.
 static int passed_counter = 0;
 
 /* TODO
@@ -13,6 +17,10 @@ static int passed_counter = 0;
 2) Add option do dump output do /dev/null
  */
 
+//! Compares to equations.
+/*! \param lhs - the first equation
+ * \param rhs - the second equaiton
+ * \returns - 1 if equal, 0 if not. */
 static int is_equal(struct Equation* lhs, struct Equation* rhs) {
 
     if (fabs(lhs->a - rhs->a) < PRECISION &&
