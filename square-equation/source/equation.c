@@ -8,7 +8,7 @@
 #define DEBUG
 #undef DEBUG
 
-
+//======================================================================
 void equation_init(struct Equation* equation) {
 
     assert(equation != NULL);
@@ -20,7 +20,7 @@ void equation_init(struct Equation* equation) {
     equation->x2 = NAN;
 }
 
-
+//======================================================================
 void equation_input(struct Equation* equation) {
 
     assert(equation != NULL);
@@ -47,10 +47,12 @@ void equation_input(struct Equation* equation) {
                                                                 equation->c);
 }
 
+//======================================================================
 int is_equal(float a, int b) {
     return (fabs(a - b) < PRECISION) ? 1:0;
 }
 
+//======================================================================
 int equation_solve_linear(struct Equation* equation) {
     assert(equation != NULL);
 
@@ -65,6 +67,7 @@ int equation_solve_linear(struct Equation* equation) {
     return SINGLE_ROOT;
 }
 
+//======================================================================
 int equation_solve(struct Equation* equation) {
     assert(equation != NULL);
 
@@ -140,11 +143,13 @@ int equation_solve(struct Equation* equation) {
 
 }
 
+//======================================================================
 void equation_print(struct Equation* equation) {
     printf("%.2f * x^2 + %.2f * x + %.2f = 0\n", equation->a, equation->b, equation->c);
 }
 
 
+//======================================================================
 int equation_print_result(struct Equation* equation, int result_type) {
     assert(equation);
 
