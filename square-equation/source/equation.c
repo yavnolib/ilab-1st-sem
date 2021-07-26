@@ -5,6 +5,9 @@
 #include <limits.h>
 #include <assert.h>
 
+#define DEBUG
+#undef DEBUG
+
 
 void equation_init(struct Equation* equation) {
 
@@ -57,7 +60,7 @@ int equation_solve_linear(struct Equation* equation) {
     assert(is_equal(b, 0) == 0);
 
     float result = -c / b;
-    equation->x1 = result;.
+    equation->x1 = result;
 
     return SINGLE_ROOT;
 }
@@ -69,7 +72,7 @@ int equation_solve(struct Equation* equation) {
     float b = equation->b;
     float c = equation->c;
     float discr = NAN;
-    float discr_sqr = NAN:
+    float discr_sqr = NAN;
 
     int result = 0;
 
@@ -78,32 +81,95 @@ int equation_solve(struct Equation* equation) {
     } else if (is_equal(a, 0) && is_equal(b, 0)) {
 
         if (is_equal(c, 0)) {
+
+            equation->x1 = INFTY;
+            equation->x2 = INFTY;
             result = INF_ROOTS;
+
         } else {
+
+            equation->x1 = NOT_A_ROOT;
+            equation->x2 = NOT_A_ROOT;
             result = NO_ROOTS;
+
         }
 
     } else {
 
+        #ifdef DEBUG
+        fprintf(stderr, "Solving quadratic.\n");
+        #endif
+
         discr = b * b - 4 * a * c;
-        if (discr < 0) {
-            result = NO_ROOTS;
-        } else if (is_equal(discr, 0)) {
+        if (discr > 0) {
             discr_sqr = sqrt(discr);
+        }
+
+        #ifdef DEBUG
+        fprintf(stderr, "Discr: %.2f\n", discr);
+        #endif
+
+        if (discr < 0) {
+
+            equation->x1 = NOT_A_ROOT;
+            equation->x2 = NOT_A_ROOT;
+            result = NO_ROOTS;
+
+        } else if (is_equal(discr, 0)) {
             result = SINGLE_ROOT;
 
-            equation->x1 = (-b - discr_sqr) / (2 * a);
+            equation->x1 = -b / (2 * a);
+            equation->x2 = NOT_A_ROOT;
 
         } else {
             result = TWO_ROOTS;
 
             equation->x1 = (-b - discr_sqr) / (2 * a);
             equation->x2 = (-b + discr_sqr) / (2 * a);
+
+            #ifdef DEBUG
+            fprintf(stderr, "x1: %.2f\n", equation->x1);
+            fprintf(stderr, "x2: %.2f\n", equation->x2);
+            #endif
             
         }
 
     }
 
+    return result;
+
+}
+
+void equation_print(struct Equation* equation) {
+    printf("%.2f * x^2 + %.2f * x + %.2f = 0\n", equation->a, equation->b, equation->c);
+}
+
+
+int equation_print_result(struct Equation* equation, int result_type) {
+    assert(equation);
+
+    switch(result_type) {
+        case NO_ROOTS:
+        printf("No roots for the equation: ");
+        break;
+        case INF_ROOTS:
+        printf("Infinite amount of roots for the equation: ");
+        break;
+        case SINGLE_ROOT:
+        printf("Only single root %.2f for the equation: ", equation->x1);
+        break;
+        case TWO_ROOTS:
+        printf("x1 = %.2f, x2 = %.2f for the equation: ", equation->x1, equation->x2);
+        break;
+        default:
+        fprintf(stderr, "ERROR: UNEXPECTED RESULT TYPE\n");
+        return -1;
+        break;
+    }
+
+    equation_print(equation);
+
+    return 0;
 }
 
 
