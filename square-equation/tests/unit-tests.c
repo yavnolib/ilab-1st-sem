@@ -5,8 +5,8 @@
 #include <float.h>
 #include <stdio.h>
 
-//! \file unit-tests.c 
-/*! Unit-tests for equation solver */
+/*! \file unit-tests.c 
+ Unit-tests for equation solver */
 
 //! A static variable which represents the number of completed tests.
 static int passed_counter = 0;

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['x1_14',['x1',['../struct_equation.html#abf31cd7831e70205eaf04feacacdf84f',1,'Equation']]],
-  ['x2_15',['x2',['../struct_equation.html#a6f2e3ae3f44ea98e060ef3e02c210364',1,'Equation']]]
+  ['tests_5fcleanup_16',['tests_cleanup',['../unit-tests_8c.html#a3f72bc410f878d51e9fecee185bdc779',1,'tests_cleanup(struct Equation *equation):&#160;unit-tests.c'],['../unit-tests_8h.html#a3f72bc410f878d51e9fecee185bdc779',1,'tests_cleanup(struct Equation *equation):&#160;unit-tests.c']]],
+  ['tests_5finit_17',['tests_init',['../unit-tests_8c.html#abd21e6222dc964638cc25448e16583ab',1,'tests_init():&#160;unit-tests.c'],['../unit-tests_8h.html#abd21e6222dc964638cc25448e16583ab',1,'tests_init():&#160;unit-tests.c']]]
 ];
