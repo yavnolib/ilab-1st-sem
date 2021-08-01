@@ -1,3 +1,5 @@
 *.o
 solver
 unit-tests
+Doxyfile
+criteria
