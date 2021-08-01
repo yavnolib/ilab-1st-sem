@@ -2,6 +2,15 @@
 #include <stdlib.h>
 #include "equation.h"
 
+/* TODO
+1) Update test generation with defines or call calculate function on the
+    array of input
+2) Add option do dump output do /dev/null
+3) Write criteria for assessment
+4) Add colorized error printing
+5) Make a library with colorized output
+ */
+
 int main() {
 
     struct Equation equation;

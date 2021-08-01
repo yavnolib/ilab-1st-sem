@@ -5,7 +5,7 @@ INCLUDE_DIR=include
 TESTS_DIR=tests
 
 CC=gcc
-FLAGS=-std=c11 -Wall -Wextra -I $(INCLUDE_DIR)
+FLAGS=-std=c11 -g -Wall -Wextra -I $(INCLUDE_DIR)
 
 TESTS=$(TESTS_DIR)/unit-tests.c
 INCLUDES=$(wildcard $(INCLUDE_DIR)/*.h) $(TESTS_DIR)/unit-tests.h
