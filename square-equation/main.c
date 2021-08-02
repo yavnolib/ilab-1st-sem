@@ -4,9 +4,9 @@
 
 /* TODO
 1) Update test generation with defines or call calculate function on the
-    array of input
+    array of input DONE
 2) Add option do dump output do /dev/null
-3) Write criteria for assessment
+3) Write criteria for assessment DONE
 4) Add colorized error printing
 5) Make a library with colorized output
  */
