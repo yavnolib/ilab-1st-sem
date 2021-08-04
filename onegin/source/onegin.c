@@ -104,7 +104,7 @@ int is_whitespace(char symbol) {
     } else if (isalpha(symbol) || isalnum(symbol)) {
         return 0;
     } else {
-        ERROR("No characther recognized");
+        ERROR("No character recognized");
         return -1;
     }
 }
@@ -126,7 +126,13 @@ int direct_comparator(struct String* lhs, struct String* rhs) {
             ++pos2;
         }
 
-        if (char_status_lhs == 0 && char_status_rhs == 0) {
+        if (*pos1 == *pos2 && char_status_rhs == 0 && char_status_lhs == 0) {
+            ++pos1;
+            ++pos2;
+            continue;
+        }
+
+        if (char_status_lhs == 0 && char_status_rhs == 0 && *pos1 != *pos2) {
             return *pos1 < *pos2 ? -1 : 1;
         }
     }

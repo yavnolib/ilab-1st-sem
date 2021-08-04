@@ -3,8 +3,8 @@
 #include <assert.h>
 #include <locale.h>
 
-static const char* input_file_1 = "tests/samples/test-1.txt";
-static const char* input_file_2 = "tests/samples/test-2.txt";
+static const char* input_file = "tests/samples/test.txt";
+
 
 
 //======================================================================
@@ -61,19 +61,33 @@ int main() {
     setlocale(LC_ALL, "ru_RU.cp1251");
 
     int ret = 0;
-    struct Text text_1;
-    ret = test_init(input_file_1, &text_1, 43);
-    assert(ret >= 0);
-    ret = test_get_strings(&text_1, 3);
+    struct Text text;
+
+    ret = test_init(input_file, &text, 43);
     assert(ret >= 0);
 
-    struct Text text_2;
-    ret = test_init(input_file_2, &text_2, 86);
+    ret = test_get_strings(&text, 3);
     assert(ret >= 0);
-    ret = test_get_strings(&text_2, 3);
+
+    struct String str1;
+    struct String str2;
+
+    str1.data = "... && ?? This a comparator test";
+    str2.data = "?>   with whitespace and punctuation";
+    ret = test_direct_comparator(&str1, &str2, -1);
     assert(ret >= 0);
-    ret = test_direct_comparator(&text_2.strings[0], &text_2.strings[1], -1);
+
+    str1.data = "String test";
+    str2.data = "String test";
+    ret = test_direct_comparator(&str1, &str2, 0);
     assert(ret >= 0);
+
+    str1.data = "Lesser string";
+    str2.data = "Lesser;;;   but bigger";
+    ret = test_direct_comparator(&str1, &str2, 1);
+    assert(ret >= 0);
+
+
 
     return 0;
 }

@@ -5,7 +5,8 @@
 
 /* TODO:
 1) Write a logger instead of printfs
-2) Add list of errors */
+2) Add list of errors
+3) Upddate make with VPATH */
 int main() {
     setlocale(LC_ALL, "ru_RU.cp1251");
     return 0;
