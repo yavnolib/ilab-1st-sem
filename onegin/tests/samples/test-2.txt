@@ -1,3 +1,0 @@
-... && ?? This a comparator test
-?>   with whitespace and punctuation
-3 lines of code

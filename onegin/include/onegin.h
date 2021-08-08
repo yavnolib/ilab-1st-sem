@@ -15,7 +15,7 @@ struct String {
     int size;
 };
 
-typedef int (*comparator)(struct String*, struct String*);
+typedef int (*comparator)(const void*, const void*);
 
 //======================================================================
 int text_init(struct Text* text, const char* name);
@@ -33,8 +33,10 @@ void text_print_strings(struct Text* text);
 void text_sort(struct Text* text, comparator comp);
 
 //======================================================================
-int direct_comparator(struct String* lhs, struct String* rhs);
+int direct_comparator(const void* lhs, const void* rhs);
 
+//======================================================================
+int sort(struct Text* text, comparator comp);
 
 
 

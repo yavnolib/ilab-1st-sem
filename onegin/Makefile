@@ -8,7 +8,7 @@ CC=gcc
 FLAGS=-std=c11 -g -Wall -Wextra -I $(INCLUDE_DIR)
 
 INCLUDES=$(wildcard $(INCLUDE_DIR)/*.h) ../liberror/errors-handling.h
-SOURCES=$(wildcard $(SRC_DIR)/*.c) $(TESTS_DIR)/unit-tests.c
+SOURCES=$(wildcard $(SRC_DIR)/*.c) $(TESTS_DIR)/tests.c
 OBJECTS=$(SOURCES:.c=.o)
 TARGET=onegin
 
@@ -23,13 +23,13 @@ all: main.o $(OBJECTS)
 	$(CC) $(FLAGS) $(OBJECTS) main.o -o $(TARGET)
 
 tests: $(OBJECTS)
-	$(CC) $(FLAGS) $(OBJECTS) -o unit-tests
+	$(CC) $(FLAGS) $(OBJECTS) -o testing
 
 
 .PHONY: clean
 
 clean:
 	-rm -f $(OBJECTS) main.o 
-	-rm -f unit-tests
+	-rm -f testing
 	-rm -f onegin
 

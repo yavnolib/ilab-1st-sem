@@ -56,10 +56,25 @@ int test_direct_comparator(struct String* lhs, struct String* rhs, int ret_val) 
 }
 
 
+//======================================================================
+void functional_tests() {
+    struct Text text;
+    int ret = 0;
 
-int main() {
-    setlocale(LC_ALL, "ru_RU.cp1251");
+    int text_strings_count = 4460;
+    int text_size = 191726;
+    const char* input_file = "tests/samples/hamlet.txt";
+    ret = test_init(input_file, &text, text_size);
+    assert(ret >= 0);
 
+    ret = test_get_strings(&text, text_strings_count);
+    assert(ret >= 0);
+    sort(&text, &direct_comparator);
+
+}
+
+//======================================================================
+void unit_tests() {
     int ret = 0;
     struct Text text;
 
@@ -86,9 +101,13 @@ int main() {
     str2.data = "Lesser;;;   but bigger";
     ret = test_direct_comparator(&str1, &str2, 1);
     assert(ret >= 0);
+}
 
 
-
+int main() {
+    setlocale(LC_ALL, "ru_RU.cp1251");
+    unit_tests();
+    functional_tests();
     return 0;
 }
 

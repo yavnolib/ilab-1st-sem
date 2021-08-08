@@ -99,7 +99,7 @@ int text_get_strings(struct Text* text) {
 
 //======================================================================
 int is_whitespace(char symbol) {
-    if (isspace(symbol) || ispunct(symbol)) {
+    if (isspace(symbol) || ispunct(symbol) || isdigit(symbol)) {
         return 1;
     } else if (isalpha(symbol) || isalnum(symbol)) {
         return 0;
@@ -110,9 +110,12 @@ int is_whitespace(char symbol) {
 }
 
 //======================================================================
-int direct_comparator(struct String* lhs, struct String* rhs) {
-    char* pos1 = lhs->data;
-    char* pos2 = rhs->data;
+int direct_comparator(const void* lhs, const void* rhs) {
+    struct String* str1 = (struct String*) lhs;
+    struct String* str2 = (struct String*) rhs;
+
+    char* pos1 = str1->data;
+    char* pos2 = str2->data;
     int char_status_lhs = 0;
     int char_status_rhs = 0;
 
@@ -136,6 +139,13 @@ int direct_comparator(struct String* lhs, struct String* rhs) {
             return *pos1 < *pos2 ? -1 : 1;
         }
     }
+    return 0;
+}
+
+//======================================================================
+int sort(struct Text* text, comparator comp) {
+    qsort(text->strings, text->strings_count, sizeof(struct String), comp);
+    text_print_strings(text);
     return 0;
 }
 
